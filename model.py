@@ -7,8 +7,18 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
 # Load Q&A dataset
-with open("maternity_qa.json", "r", encoding="utf-8") as f:
+with open("maternal_dataset.json", "r", encoding="utf-8") as f:
     qa_data = json.load(f)
-    
+
 # Combine all answers into one long text
 context = " ".join([item["answer"] for item in qa_data])
+
+# Create a pipeline
+qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer)
+
+# Run a loop to ask questions
+while True:
+    question = input("Shyiramo ikibazo: ")  # type your question in Kinyarwanda
+    result = qa_pipeline(question=question, context=context)
+    print("Igisubizo:", result['answer'])
+
