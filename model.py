@@ -2,7 +2,7 @@ from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
 import json
 
 # Loading the pre-trained model ("mT5 small")
-model_name = "mT5 small"
+model_name = "google/mt5-small"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
@@ -18,7 +18,7 @@ qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer)
 
 # Run a loop to ask questions
 while True:
-    question = input("Shyiramo ikibazo: ")  # type your question in Kinyarwanda
+    question = input("Shyiramo ikibazo: ") 
     result = qa_pipeline(question=question, context=context)
     print("Igisubizo:", result['answer'])
 
