@@ -13,6 +13,15 @@ with open("maternal_dataset.json", "r", encoding="utf-8") as f:
 # Combine all answers into one long text
 context = " ".join([item["answer"] for item in qa_data])
 
+# Function to split long text into chunks
+def chunk_text(text, max_tokens=400):
+    words = text.split()
+    chunks = []
+    for i in range(0, len(words), max_tokens):
+        chunk = " ".join(words[i:i + max_tokens])
+        chunks.append(chunk)
+    return chunks
+
 # Create a pipeline
 qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer)
 print("=========!Murakaza neza kuri MotherLink Baza !==========")
@@ -26,12 +35,23 @@ while True:
             question = input("Shyiramo ikibazo (andika '0' kugira usubire inyuma): ")
             if question == "0":
                 break
-            result = qa_pipeline(question=question, context=context)
-            print("Igisubizo:", result['answer'], "\n")
+
+            # Apply chunking
+            chunks = chunk_text(context)
+            best_answer = None
+            best_score = 0
+
+            # Evaluate each chunk
+            for chunk in chunks:
+                result = qa_pipeline(question=question, context=chunk)
+                if result["score"] > best_score:
+                    best_answer = result["answer"]
+                    best_score = result["score"]
+
+            print("Igisubizo:", best_answer, "\n")
 
     elif choice == "2":
         print("Wahisemo gusubira inyuma...")
-        # Aha ushobora gushyiraho indi menu cyangwa ibikorwa byasubirwamo
         continue
 
     elif choice == "3":
