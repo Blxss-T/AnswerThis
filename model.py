@@ -21,8 +21,10 @@ qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer)
 while True:
     choice=input("1.Gukomeza kubaza: 00.Gusubira inyuma: 3.Gusohokamo")
 if choice == "1":
-   
+    while True:
     question = input("Shyiramo ikibazo: ") 
+    if question == "0":
+        break
     result = qa_pipeline(question=question, context=context)
-    print("Igisubizo:", result['answer'])
+    print("Igisubizo:", result['answer'],"\n")
 
