@@ -2,7 +2,7 @@ from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
 import json
 
 # Loading the pre-trained model ("mT5 small")
-model_name = "google/mt5-small"
+model_name = "xlm-roberta-large-squad2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
