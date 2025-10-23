@@ -1,14 +1,82 @@
 [
   {
-    "question": "Ni iki gitera inkorora?",
-    "answer": "Inkorora ishobora guterwa n’imyuka, umwotsi, cyangwa uburwayi bwo mu bihaha."
+    "question": "Ni iki gitera inkorora ku mugore utwite?",
+    "answer": "Ishobora guterwa n’ubukonje, allergie, umwotsi w’itabi, cyangwa indwara zifata imyanya y’ubuhumekero."
   },
   {
-    "question": "Ni ibihe bimenyetso by'inkorora ku mugore utwite?",
-    "answer": "Inkorora ishobora kugaragara mu minsi 3-5, hamwe n’umuriro muke no guhumeka nabi."
+    "question": "Ni gute umugore utwite yakwirinda inkorora?",
+    "answer": "Yirinda umwotsi, yirinda abarwaye, anywa amazi menshi, kandi akarya imbuto n’imboga."
   },
   {
-    "question": "Ni gute umuntu yakwirinda inkorora?",
-    "answer": "Kwirinda umwotsi, gusukura intoki kenshi, no kunywa amazi menshi birafasha."
+    "question": "Ni ibihe bimenyetso bigaragaza ko umwana afite inkorora ikomeye?",
+    "answer": "Iyo umwana afite umuriro, guhumeka cyane, cyangwa ashobora kunanirwa kurya, ni inkorora ikomeye."
+  },
+  {
+    "question": "Ni gute wakwirinda ko umwana afatwa n’inkorora?",
+    "answer": "Umwana agomba gusigirwa ahantu hasukuye, yirinde umwotsi, kandi asukure intoki kenshi."
+  },
+  {
+    "question": "Ni iki gituma ababyeyi bagomba gukaraba intoki mbere yo gufata umwana?",
+    "answer": "Ni ukwirinda gukwirakwiza udukoko n’indwara ku mwana."
+  },
+  {
+    "question": "Ni iki gituma umwana yanga gusinzira nijoro?",
+    "answer": "Ashobora kuba afite inzara, ububabare, cyangwa impinduka mu mibereho ye isanzwe."
+  },
+  {
+    "question": "Ni gute umugore utwite yakwirinda umunaniro ukabije?",
+    "answer": "Agomba kuruhuka bihagije, kurya neza, no kunywa amazi ahagije."
+  },
+  {
+    "question": "Ni iki gituma umugore utwite agira isesemi?",
+    "answer": "Isesemi iterwa n’impinduka z’imisemburo mu mubiri, cyane cyane mu byumweru bya mbere by’inda."
+  },
+  {
+    "question": "Ni iki cyafasha umugore utwite kurwanya isesemi?",
+    "answer": "Karya utuntu duto duto, yirinde ibiryo bifite impumuro ikomeye, kandi yirinde gusiga inzara."
+  },
+  {
+    "question": "Ni ibihe biribwa byiza ku mugore utwite?",
+    "answer": "Imbuto, imboga, ibinyampeke bitunganyije, amata, amafi, n’inyama zidafite ibinure byinshi."
+  },
+  {
+    "question": "Ni gute umubyeyi yakwirinda anemia mu gihe atwite?",
+    "answer": "Arya ibiribwa bikungahaye ku byuma n’umunyu w’isukari nka epinari, inyama, n’ibishyimbo."
+  },
+  {
+    "question": "Ni iki gituma umwana adakura neza?",
+    "answer": "Kudafata indyo yuzuye, indwara za hato na hato, cyangwa kutabona urukundo n’umutuzo."
+  },
+  {
+    "question": "Ni gute umubyeyi ashobora gufasha umwana kurya neza?",
+    "answer": "Amuha ibiryo bitandukanye, amuteguza neza, kandi amuha igihe cyo kurya atamuhatira."
+  },
+  {
+    "question": "Ni gute umubyeyi yakwirinda guhungabanya umwana muto?",
+    "answer": "Agomba kumuganiriza neza, kumwereka urukundo, no kumurinda impagarara z’abakuru."
+  },
+  {
+    "question": "Ni iki gituma umwana agira umuriro?",
+    "answer": "Umuriro uterwa n’indwara nka grippe, malaria, cyangwa indwara z’ubuhumekero."
+  },
+  {
+    "question": "Ni gute umubyeyi yakwita ku mwana ufite umuriro?",
+    "answer": "Amwambika imyenda yoroshye, amuha amazi menshi, kandi ajye kwa muganga niba bidahinduka."
+  },
+  {
+    "question": "Ni gute umubyeyi yakwirinda kwandura indwara mu gihe atwite?",
+    "answer": "Asukura intoki, yirinda abantu barwaye, kandi akarya indyo ifite intungamubiri."
+  },
+  {
+    "question": "Ni ryari umugore utwite agomba kujya kwa muganga?",
+    "answer": "Nibura buri kwezi, cyangwa igihe agize ikibazo nk’ububabare bukabije cyangwa kuva."
+  },
+  {
+    "question": "Ni gute umubyeyi yakwirinda stress mu gihe atwite?",
+    "answer": "Akora imyitozo yoroshye, asenga, yaganira n’abandi, kandi agafata umwanya wo kuruhuka."
+  },
+  {
+    "question": "Ni iki gituma umwana arira cyane?",
+    "answer": "Ashobora kuba afite inzara, umunaniro, ububabare, cyangwa ashaka gukumbura umubyeyi."
   }
 ]

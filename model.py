@@ -17,6 +17,7 @@ context = " ".join([item["answer"] for item in qa_data])
 qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer)
 
 # Run a loop to ask questions
+continue=input("1.Gukomeza kubaza:","00.Gusubira inyuma: " ,"3.Gusohokamo")
 while True:
     question = input("Shyiramo ikibazo: ") 
     result = qa_pipeline(question=question, context=context)
