@@ -15,6 +15,7 @@ context = " ".join([item["answer"] for item in qa_data])
 
 # Create a pipeline
 qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer)
+print("=========!Murakaza neza kuri MotherLink Baza !==========")
 
 # Run a loop to ask questions
 while True:
