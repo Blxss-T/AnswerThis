@@ -1,7 +1,7 @@
 from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
 import json
 
-# Loading the pre-trained model ("mT5 small")
+# Load pre-trained multilingual QA model
 model_name = "xlm-roberta-large-squad2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
@@ -13,7 +13,7 @@ with open("maternal_dataset.json", "r", encoding="utf-8") as f:
 # Combine all answers into one long text
 context = " ".join([item["answer"] for item in qa_data])
 
-# Function to split long text into chunks
+# Function to split long text into chunks (to improve QA accuracy)
 def chunk_text(text, max_tokens=400):
     words = text.split()
     chunks = []
@@ -22,11 +22,11 @@ def chunk_text(text, max_tokens=400):
         chunks.append(chunk)
     return chunks
 
-# Create a pipeline
+# Create QA pipeline
 qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer)
-print("=========!Murakaza neza kuri MotherLink Baza !==========")
+print("========= Murakaza neza kuri MotherLink Baza! =========")
 
-# Run a loop to ask questions
+# Main interaction loop
 while True:
     choice = input("1. Gukomeza kubaza | 2. Gusubira inyuma | 3. Gusohokamo: ")
 
@@ -34,24 +34,32 @@ while True:
         while True:
             question = input("Shyiramo ikibazo (andika '0' kugira usubire inyuma): ")
             if question == "0":
+                print("Usubiye ku rupapuro rw'ibanze...\n")
                 break
 
-            # Apply chunking
+            # Split context into chunks
             chunks = chunk_text(context)
             best_answer = None
             best_score = 0
 
-            # Evaluate each chunk
+            # Evaluate each chunk and select the answer with highest score
             for chunk in chunks:
-                result = qa_pipeline(question=question, context=chunk)
-                if result["score"] > best_score:
-                    best_answer = result["answer"]
-                    best_score = result["score"]
+                try:
+                    result = qa_pipeline(question=question, context=chunk)
+                    if result["score"] > best_score:
+                        best_answer = result["answer"]
+                        best_score = result["score"]
+                except:
+                    continue  # skip any problematic chunk
 
-            print("Igisubizo:", best_answer, "\n")
+            # If no answer is found, give a fallback message
+            if best_answer:
+                print("Igisubizo:", best_answer, "\n")
+            else:
+                print("Ntacyasubijwe. Ongera ugerageze ikibazo cyawe.\n")
 
     elif choice == "2":
-        print("Wahisemo gusubira inyuma...")
+        print("Wahisemo gusubira inyuma...\n")
         continue
 
     elif choice == "3":
