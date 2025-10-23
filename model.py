@@ -27,4 +27,8 @@ if choice == "1":
         break
     result = qa_pipeline(question=question, context=context)
     print("Igisubizo:", result['answer'],"\n")
+     elif choice == "2":
+        print("Wahisemo gusubira inyuma...")
+        # Aha ushobora gushyiraho indi menu cyangwa ibikorwa byasubirwamo.
+        continue
 
