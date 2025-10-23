@@ -35,5 +35,5 @@ if choice == "1":
         print("Murakoze! Muri gusohoka...")
         break
      else:
-        print("Hitamo ntibikwiye, ongera ugerageze.\n")
+        print("Amahitamo ntakwiye, ongera ugerageze.\n")
 
