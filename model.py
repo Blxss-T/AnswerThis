@@ -31,4 +31,9 @@ if choice == "1":
         print("Wahisemo gusubira inyuma...")
         # Aha ushobora gushyiraho indi menu cyangwa ibikorwa byasubirwamo.
         continue
+     elif choice == "3":
+        print("Murakoze! Muri gusohoka...")
+        break
+     else:
+        print("Hitamo ntibikwiye, ongera ugerageze.\n")
 
