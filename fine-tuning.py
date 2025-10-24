@@ -5,19 +5,23 @@ model_name = "deepset/xlm-roberta-large-squad2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-# Load the dataset (SQuAD format)
+# Load the dataset
 dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")
 
-# Function to preprocess each example
-def preprocess_function(examples):
-    questions = [q.strip() for q in examples["question"]]
-    contexts = examples["context"]
-    answers = examples["answers"]
+# Flatten SQuAD structure
+def preprocess_function(example):
+    questions, contexts, start_positions, end_positions = [], [], [], []
 
-    start_positions = [ans["answer_start"][0] for ans in answers]
-    end_positions = [
-        ans["answer_start"][0] + len(ans["text"][0]) for ans in answers
-    ]
+    for article in example["data"]:
+        for paragraph in article["paragraphs"]:
+            context = paragraph["context"]
+            for qa in paragraph["qas"]:
+                question = qa["question"]
+                answer = qa["answers"][0]
+                questions.append(question)
+                contexts.append(context)
+                start_positions.append(answer["answer_start"])
+                end_positions.append(answer["answer_start"] + len(answer["text"]))
 
     encodings = tokenizer(
         questions,
@@ -26,13 +30,12 @@ def preprocess_function(examples):
         padding="max_length",
         max_length=384,
     )
-
     encodings["start_positions"] = start_positions
     encodings["end_positions"] = end_positions
     return encodings
 
 # Apply preprocessing
-tokenized_datasets = dataset.map(preprocess_function, batched=True)
+tokenized_datasets = dataset.map(preprocess_function, batched=False)
 
 # Training setup
 training_args = TrainingArguments(
