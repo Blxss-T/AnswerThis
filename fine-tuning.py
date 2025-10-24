@@ -1,4 +1,4 @@
-from datasets import load_dataset, Dataset
+from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering, TrainingArguments, Trainer
 
 # Load model and tokenizer
@@ -6,28 +6,35 @@ model_name = "deepset/xlm-roberta-large-squad2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-# Load dataset
-raw_dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")
+# Load dataset (your JSON has top-level "data")
+raw = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")
 
-# --- Flatten the nested SQuAD structure ---
-def flatten_squad(example):
-    contexts, questions, start_positions, end_positions = [], [], [], []
-    for article in example["data"]:
-        for paragraph in article["paragraphs"]:
-            context = paragraph["context"]
-            for qa in paragraph["qas"]:
-                question = qa["question"]
-                answer = qa["answers"][0]
-                start = answer["answer_start"]
-                end = start + len(answer["text"])
-                contexts.append(context)
-                questions.append(question)
-                start_positions.append(start)
-                end_positions.append(end)
-    return {"context": contexts, "question": questions, "start_positions": start_positions, "end_positions": end_positions}
+# Extract the real data
+dataset = raw["train"]["data"]
 
-# Apply flattening
-flat_dataset = raw_dataset["train"].map(flatten_squad, batched=False, remove_columns=raw_dataset["train"].column_names)
+# --- Flatten into question–context–answer ---
+contexts, questions, start_positions, end_positions = [], [], [], []
+for article in dataset:
+    for paragraph in article["paragraphs"]:
+        context = paragraph["context"]
+        for qa in paragraph["qas"]:
+            question = qa["question"]
+            answer = qa["answers"][0]
+            start = answer["answer_start"]
+            end = start + len(answer["text"])
+            contexts.append(context)
+            questions.append(question)
+            start_positions.append(start)
+            end_positions.append(end)
+
+# --- Convert to Dataset ---
+from datasets import Dataset
+flat_dataset = Dataset.from_dict({
+    "context": contexts,
+    "question": questions,
+    "start_positions": start_positions,
+    "end_positions": end_positions
+})
 
 # --- Tokenization ---
 def preprocess_function(examples):
@@ -42,12 +49,12 @@ def preprocess_function(examples):
     encodings["end_positions"] = examples["end_positions"]
     return encodings
 
-tokenized_data = flat_dataset.map(preprocess_function, batched=True)
+tokenized = flat_dataset.map(preprocess_function, batched=True)
 
-# --- Split train/validation ---
-dataset_dict = tokenized_data.train_test_split(test_size=0.1)
+# --- Split into train/test ---
+dataset_split = tokenized.train_test_split(test_size=0.1)
 
-# --- Training setup ---
+# --- Training arguments ---
 training_args = TrainingArguments(
     output_dir="./results",
     evaluation_strategy="epoch",
@@ -61,14 +68,13 @@ training_args = TrainingArguments(
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=dataset_dict["train"],
-    eval_dataset=dataset_dict["test"],
+    train_dataset=dataset_split["train"],
+    eval_dataset=dataset_split["test"],
 )
 
-# --- Start training ---
 trainer.train()
 
-# --- Save fine-tuned model ---
+# Save the fine-tuned model
 model.save_pretrained("./fine_tuned_maternal_model")
 tokenizer.save_pretrained("./fine_tuned_maternal_model")
 
