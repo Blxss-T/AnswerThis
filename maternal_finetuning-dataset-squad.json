@@ -1,0 +1,309 @@
+{
+  "data": [
+    {
+      "title": "MaternalHealth",
+      "paragraphs": [
+        {
+          "context": "Ishobora guterwa n’ubukonje, allergie, umwotsi w’itabi, cyangwa indwara zifata imyanya y’ubuhumekero.",
+          "qas": [
+            {
+              "id": "1",
+              "question": "Ni iki gitera inkorora ku mugore utwite?",
+              "answers": [
+                {
+                  "text": "Ishobora guterwa n’ubukonje, allergie, umwotsi w’itabi, cyangwa indwara zifata imyanya y’ubuhumekero.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Yirinda umwotsi, yirinda abarwaye, anywa amazi menshi, kandi akarya imbuto n’imboga.",
+          "qas": [
+            {
+              "id": "2",
+              "question": "Ni gute umugore utwite yakwirinda inkorora?",
+              "answers": [
+                {
+                  "text": "Yirinda umwotsi, yirinda abarwaye, anywa amazi menshi, kandi akarya imbuto n’imboga.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Iyo umwana afite umuriro, guhumeka cyane, cyangwa ashobora kunanirwa kurya, ni inkorora ikomeye.",
+          "qas": [
+            {
+              "id": "3",
+              "question": "Ni ibihe bimenyetso bigaragaza ko umwana afite inkorora ikomeye?",
+              "answers": [
+                {
+                  "text": "Iyo umwana afite umuriro, guhumeka cyane, cyangwa ashobora kunanirwa kurya, ni inkorora ikomeye.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Umwana agomba gusigirwa ahantu hasukuye, yirinde umwotsi, kandi asukure intoki kenshi.",
+          "qas": [
+            {
+              "id": "4",
+              "question": "Ni gute wakwirinda ko umwana afatwa n’inkorora?",
+              "answers": [
+                {
+                  "text": "Umwana agomba gusigirwa ahantu hasukuye, yirinde umwotsi, kandi asukure intoki kenshi.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Ni ukwirinda gukwirakwiza udukoko n’indwara ku mwana.",
+          "qas": [
+            {
+              "id": "5",
+              "question": "Ni iki gituma ababyeyi bagomba gukaraba intoki mbere yo gufata umwana?",
+              "answers": [
+                {
+                  "text": "Ni ukwirinda gukwirakwiza udukoko n’indwara ku mwana.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Ashobora kuba afite inzara, ububabare, cyangwa impinduka mu mibereho ye isanzwe.",
+          "qas": [
+            {
+              "id": "6",
+              "question": "Ni iki gituma umwana yanga gusinzira nijoro?",
+              "answers": [
+                {
+                  "text": "Ashobora kuba afite inzara, ububabare, cyangwa impinduka mu mibereho ye isanzwe.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Agomba kuruhuka bihagije, kurya neza, no kunywa amazi ahagije.",
+          "qas": [
+            {
+              "id": "7",
+              "question": "Ni gute umugore utwite yakwirinda umunaniro ukabije?",
+              "answers": [
+                {
+                  "text": "Agomba kuruhuka bihagije, kurya neza, no kunywa amazi ahagije.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Isesemi iterwa n’impinduka z’imisemburo mu mubiri, cyane cyane mu byumweru bya mbere by’inda.",
+          "qas": [
+            {
+              "id": "8",
+              "question": "Ni iki gituma umugore utwite agira isesemi?",
+              "answers": [
+                {
+                  "text": "Isesemi iterwa n’impinduka z’imisemburo mu mubiri, cyane cyane mu byumweru bya mbere by’inda.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Karya utuntu duto duto, yirinde ibiryo bifite impumuro ikomeye, kandi yirinde gusiga inzara.",
+          "qas": [
+            {
+              "id": "9",
+              "question": "Ni iki cyafasha umugore utwite kurwanya isesemi?",
+              "answers": [
+                {
+                  "text": "Karya utuntu duto duto, yirinde ibiryo bifite impumuro ikomeye, kandi yirinde gusiga inzara.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Imbuto, imboga, ibinyampeke bitunganyije, amata, amafi, n’inyama zidafite ibinure byinshi.",
+          "qas": [
+            {
+              "id": "10",
+              "question": "Ni ibihe biribwa byiza ku mugore utwite?",
+              "answers": [
+                {
+                  "text": "Imbuto, imboga, ibinyampeke bitunganyije, amata, amafi, n’inyama zidafite ibinure byinshi.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Arya ibiribwa bikungahaye ku byuma n’umunyu w’isukari nka epinari, inyama, n’ibishyimbo.",
+          "qas": [
+            {
+              "id": "11",
+              "question": "Ni gute umubyeyi yakwirinda anemia mu gihe atwite?",
+              "answers": [
+                {
+                  "text": "Arya ibiribwa bikungahaye ku byuma n’umunyu w’isukari nka epinari, inyama, n’ibishyimbo.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Kudafata indyo yuzuye, indwara za hato na hato, cyangwa kutabona urukundo n’umutuzo.",
+          "qas": [
+            {
+              "id": "12",
+              "question": "Ni iki gituma umwana adakura neza?",
+              "answers": [
+                {
+                  "text": "Kudafata indyo yuzuye, indwara za hato na hato, cyangwa kutabona urukundo n’umutuzo.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Amuha ibiryo bitandukanye, amuteguza neza, kandi amuha igihe cyo kurya atamuhatira.",
+          "qas": [
+            {
+              "id": "13",
+              "question": "Ni gute umubyeyi ashobora gufasha umwana kurya neza?",
+              "answers": [
+                {
+                  "text": "Amuha ibiryo bitandukanye, amuteguza neza, kandi amuha igihe cyo kurya atamuhatira.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Agomba kumuganiriza neza, kumwereka urukundo, no kumurinda impagarara z’abakuru.",
+          "qas": [
+            {
+              "id": "14",
+              "question": "Ni gute umubyeyi yakwirinda guhungabanya umwana muto?",
+              "answers": [
+                {
+                  "text": "Agomba kumuganiriza neza, kumwereka urukundo, no kumurinda impagarara z’abakuru.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Umuriro uterwa n’indwara nka grippe, malaria, cyangwa indwara z’ubuhumekero.",
+          "qas": [
+            {
+              "id": "15",
+              "question": "Ni iki gituma umwana agira umuriro?",
+              "answers": [
+                {
+                  "text": "Umuriro uterwa n’indwara nka grippe, malaria, cyangwa indwara z’ubuhumekero.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Amwambika imyenda yoroshye, amuha amazi menshi, kandi ajye kwa muganga niba bidahinduka.",
+          "qas": [
+            {
+              "id": "16",
+              "question": "Ni gute umubyeyi yakwita ku mwana ufite umuriro?",
+              "answers": [
+                {
+                  "text": "Amwambika imyenda yoroshye, amuha amazi menshi, kandi ajye kwa muganga niba bidahinduka.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Asukura intoki, yirinda abantu barwaye, kandi akarya indyo ifite intungamubiri.",
+          "qas": [
+            {
+              "id": "17",
+              "question": "Ni gute umubyeyi yakwirinda kwandura indwara mu gihe atwite?",
+              "answers": [
+                {
+                  "text": "Asukura intoki, yirinda abantu barwaye, kandi akarya indyo ifite intungamubiri.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Nibura buri kwezi, cyangwa igihe agize ikibazo nk’ububabare bukabije cyangwa kuva.",
+          "qas": [
+            {
+              "id": "18",
+              "question": "Ni ryari umugore utwite agomba kujya kwa muganga?",
+              "answers": [
+                {
+                  "text": "Nibura buri kwezi, cyangwa igihe agize ikibazo nk’ububabare bukabije cyangwa kuva.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Akora imyitozo yoroshye, asenga, yaganira n’abandi, kandi agafata umwanya wo kuruhuka.",
+          "qas": [
+            {
+              "id": "19",
+              "question": "Ni gute umubyeyi yakwirinda stress mu gihe atwite?",
+              "answers": [
+                {
+                  "text": "Akora imyitozo yoroshye, asenga, yaganira n’abandi, kandi agafata umwanya wo kuruhuka.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "context": "Ashobora kuba afite inzara, umunaniro, ububabare, cyangwa ashaka gukumbura umubyeyi.",
+          "qas": [
+            {
+              "id": "20",
+              "question": "Ni iki gituma umwana arira cyane?",
+              "answers": [
+                {
+                  "text": "Ashobora kuba afite inzara, umunaniro, ububabare, cyangwa ashaka gukumbura umubyeyi.",
+                  "answer_start": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

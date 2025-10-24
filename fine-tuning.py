@@ -10,12 +10,16 @@ dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.jso
 
 # Tokenize
 def preprocess(examples):
+    questions = [q["question"] for p in examples["paragraphs"] for q in p["qas"]]
+    contexts = [p["context"] for p in examples["paragraphs"] for q in p["qas"]]
+    answers = [q["answers"][0] for p in examples["paragraphs"] for q in p["qas"]]
+    
     return tokenizer(
-        examples["question"],
-        examples["context"],
+        questions,
+        contexts,
         truncation=True,
         padding="max_length",
-        max_length=512
+        max_length=384,
     )
 
 tokenized = dataset.map(preprocess, batched=True)
