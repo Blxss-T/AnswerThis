@@ -1,19 +1,19 @@
 from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
 import json
 
-# Load pre-trained multilingual QA model
-model_name = "xlm-roberta-large-squad2"
+# Load pre-trained  model
+model_name = "deepset/xlm-roberta-large-squad2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-# Load Q&A dataset
+# Load the dataset
 with open("maternal_dataset.json", "r", encoding="utf-8") as f:
     qa_data = json.load(f)
 
-# Combine all answers into one long text
+#one answer
 context = " ".join([item["answer"] for item in qa_data])
 
-# Function to split long text into chunks (to improve QA accuracy)
+# Function to split long text into chunks 
 def chunk_text(text, max_tokens=400):
     words = text.split()
     chunks = []
