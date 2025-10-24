@@ -1,5 +1,4 @@
-from datasets import load_dataset
-import transformers
+from datasets import load_dataset, DatasetDict
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering, TrainingArguments, Trainer
 
 model_name = "deepset/xlm-roberta-large-squad2"
@@ -7,10 +6,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
 # Load the dataset
-dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")
-
-
-print(transformers.__version__)
+dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")["train"]
 
 # Flatten SQuAD structure
 def preprocess_function(example):
@@ -38,14 +34,21 @@ def preprocess_function(example):
     encodings["end_positions"] = end_positions
     return encodings
 
-# Apply preprocessing
-tokenized_datasets = dataset.map(preprocess_function, batched=False)
+# Preprocess the dataset
+tokenized_dataset = preprocess_function(dataset)
+
+# Convert to Hugging Face DatasetDict
+from datasets import Dataset
+full_dataset = Dataset.from_dict(tokenized_dataset)
+
+# Split into train and validation
+dataset_dict = full_dataset.train_test_split(test_size=0.1)
+print(dataset_dict)
 
 # Training setup
-
 training_args = TrainingArguments(
     output_dir="./results",
-    eval_strategy="epoch",  # use this, not evaluation_strategy
+    evaluation_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=2,
     num_train_epochs=3,
@@ -53,12 +56,11 @@ training_args = TrainingArguments(
     save_total_limit=1,
 )
 
-
-
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_datasets["train"],
+    train_dataset=dataset_dict["train"],
+    eval_dataset=dataset_dict["test"],  # validation dataset
 )
 
 trainer.train()
