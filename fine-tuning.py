@@ -1,50 +1,53 @@
 from datasets import load_dataset, Dataset
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering, TrainingArguments, Trainer
 
-# Model checkpoint
+# Load model and tokenizer
 model_name = "deepset/xlm-roberta-large-squad2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-# Load the dataset
-dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")["train"]
+# Load dataset
+raw_dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")
 
-# Flatten SQuAD structure
-def preprocess_function(dataset):
-    questions, contexts, start_positions, end_positions = [], [], [], []
-
-    for article in dataset:
+# --- Flatten the nested SQuAD structure ---
+def flatten_squad(example):
+    contexts, questions, start_positions, end_positions = [], [], [], []
+    for article in example["data"]:
         for paragraph in article["paragraphs"]:
             context = paragraph["context"]
             for qa in paragraph["qas"]:
                 question = qa["question"]
                 answer = qa["answers"][0]
-                questions.append(question)
+                start = answer["answer_start"]
+                end = start + len(answer["text"])
                 contexts.append(context)
-                start_positions.append(answer["answer_start"])
-                end_positions.append(answer["answer_start"] + len(answer["text"]))
+                questions.append(question)
+                start_positions.append(start)
+                end_positions.append(end)
+    return {"context": contexts, "question": questions, "start_positions": start_positions, "end_positions": end_positions}
 
+# Apply flattening
+flat_dataset = raw_dataset["train"].map(flatten_squad, batched=False, remove_columns=raw_dataset["train"].column_names)
+
+# --- Tokenization ---
+def preprocess_function(examples):
     encodings = tokenizer(
-        questions,
-        contexts,
+        examples["question"],
+        examples["context"],
         truncation=True,
         padding="max_length",
         max_length=384,
     )
-    encodings["start_positions"] = start_positions
-    encodings["end_positions"] = end_positions
+    encodings["start_positions"] = examples["start_positions"]
+    encodings["end_positions"] = examples["end_positions"]
     return encodings
 
-# Preprocess the dataset
-tokenized_data = preprocess_function(dataset)
+tokenized_data = flat_dataset.map(preprocess_function, batched=True)
 
-# Convert to Hugging Face Dataset
-full_dataset = Dataset.from_dict(tokenized_data)
+# --- Split train/validation ---
+dataset_dict = tokenized_data.train_test_split(test_size=0.1)
 
-# Split into train and validation sets
-dataset_dict = full_dataset.train_test_split(test_size=0.1)
-
-# Training setup
+# --- Training setup ---
 training_args = TrainingArguments(
     output_dir="./results",
     evaluation_strategy="epoch",
@@ -55,19 +58,18 @@ training_args = TrainingArguments(
     save_total_limit=1,
 )
 
-# Initialize Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=dataset_dict["train"],
-    eval_dataset=dataset_dict["test"],  # validation dataset
+    eval_dataset=dataset_dict["test"],
 )
 
-# Start training
+# --- Start training ---
 trainer.train()
 
-# Save the fine-tuned model
+# --- Save fine-tuned model ---
 model.save_pretrained("./fine_tuned_maternal_model")
 tokenizer.save_pretrained("./fine_tuned_maternal_model")
 
-print("Fine-tuning complete! Saved to ./fine_tuned_maternal_model")
+print("Fine-tuning complete! Model saved to ./fine_tuned_maternal_model")
