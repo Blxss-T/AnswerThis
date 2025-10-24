@@ -6,7 +6,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
 # Load dataset
-dataset = load_dataset("json", data_files="maternal_dataset_squad.json")
+dataset = load_dataset("json", data_files="maternal_finetuning-dataset-squad.json")
 
 # Tokenize
 def preprocess(examples):
